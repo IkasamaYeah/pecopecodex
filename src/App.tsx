@@ -1,6 +1,6 @@
 import { Routes,Route } from "react-router-dom"
 import { Combination } from "./pages/combination";
-import { Workes } from "./pages/workes";
+import { Dictionary } from "./pages/Dictionary";
 import { Home } from "./pages/home";
 import './App.css';
 
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="combination" element={<Combination />}></Route>
-        <Route path="workes" element={<Workes />}></Route>
+        <Route path="dictionary" element={<Dictionary />}></Route>
       </Routes>
     </div>
     </>);

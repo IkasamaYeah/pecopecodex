@@ -1,15 +1,13 @@
 import {Button} from "@mui/material"
 import styled from "@emotion/styled"
-
-const TextButton = styled(Button)`
-  text-transform: none;
-`
+import { Link } from "react-router-dom"
 
 export function Home () {
   return(<>
     <h1>Pecodex</h1>
-    <TextButton>text</TextButton>
-    <Button variant="contained">作業適正</Button>
-    <Button variant="outlined">配合</Button>
+    <div>
+      <Link to={`/dictionary`}><Button>図鑑</Button></Link>
+      <Link to={`/combination`}><Button>配合</Button></Link>
+    </div>
   </>)
 }
