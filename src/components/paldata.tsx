@@ -31,9 +31,9 @@ const PalData: PalDataItem[] = [
     type: ["無"],
     work: [
       { kind: "手作業", level: 1 },
-      { kind: "採集1", level: 1 },
-      { kind: "採掘1", level: 1 },
-      { kind: "運搬1", level: 1 }],
+      { kind: "採集", level: 1 },
+      { kind: "採掘", level: 1 },
+      { kind: "運搬", level: 1 }],
     item: ["赤いベリー"]
   },
   {
@@ -42,7 +42,7 @@ const PalData: PalDataItem[] = [
     type: ["無"],
     work: [
       { kind: "採集", level: 1 },
-      { kind: "放牧1", level: 1 }
+      { kind: "放牧", level: 1 }
     ],
     item: ["卵", "タマコッコの鶏肉"]
   },
@@ -52,7 +52,7 @@ const PalData: PalDataItem[] = [
     type: ["草"],
     work: [
       { kind: "種まき", level: 1 },
-      { kind: "手作業1", level: 1 },
+      { kind: "手作業", level: 1 },
       { kind: "伐採", level: 1 },
       { kind: "製薬", level: 1 },
       { kind: "採集", level: 1 }
@@ -84,9 +84,9 @@ const PalData: PalDataItem[] = [
     id: " 7",
     type: ["雷"],
     work: [
-      {kind:"手作業1",level:1},
-      {kind:"運搬1",level:1},
-      {kind:"水やり1",level:1}
+      {kind:"手作業",level:1},
+      {kind:"運搬",level:1},
+      {kind:"水やり",level:1}
     ],
     item: ["発電器官"]
   },
@@ -127,11 +127,11 @@ const PalData: PalDataItem[] = [
     id: "11",
     type: ["水", "氷"],
     work: [
-      {kind:"手作業2",level:2},
-      {kind:"運搬2",level:2},
-      {kind:"水やり2",level:2},
-      {kind:"採掘2",level:2},
-      {kind:"冷却2",level:2},
+      {kind:"手作業",level:2},
+      {kind:"運搬",level:2},
+      {kind:"水やり",level:2},
+      {kind:"採掘",level:2},
+      {kind:"冷却",level:2},
     ],
     item: ["氷結器官", "キャプペンの羽飾り"],
   }, {
@@ -164,7 +164,7 @@ const PalData: PalDataItem[] = [
     type: ["無"],
     work: [
       {kind:"採集",level:1},
-      {kind:"牧場",level:1}
+      {kind:"放牧",level:1}
     ],
     item: ["皮", "骨"],
   }, {
@@ -270,7 +270,7 @@ const PalData: PalDataItem[] = [
     type: ["水"],
     work: [
       {kind:"運搬",level:1},
-      {kind:"水やり1",level:1}
+      {kind:"水やり",level:1}
     ],
     item: ["パルの体液"],
   }, {
@@ -332,7 +332,7 @@ const PalData: PalDataItem[] = [
     ],
     item: ["パルの体液"],
   }, {
-    name: "シャーマンダー2",
+    name: "シャーマンダー",
     id: "31B",
     type: ["炎"],
     work: [

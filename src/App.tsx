@@ -2,6 +2,7 @@ import { Routes,Route } from "react-router-dom"
 import { Combination } from "./pages/combination";
 import { Dictionary } from "./pages/Dictionary";
 import { Home } from "./pages/home";
+import 'destyle.css';
 import './App.css';
 
 function App() {
