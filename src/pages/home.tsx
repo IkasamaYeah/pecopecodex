@@ -1,9 +1,7 @@
 import {Button} from "@mui/material"
 import { Link } from "react-router-dom"
-import React,{ useEffect } from "react"
 
 export function Home () {
-    
   return(<>
     <h1>Pecopecodexxxxxxxx</h1>
     <div>
