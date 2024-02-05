@@ -1,5 +1,4 @@
 import {Button} from "@mui/material"
-import styled from "@emotion/styled"
 import { Link } from "react-router-dom"
 
 export function Home () {
