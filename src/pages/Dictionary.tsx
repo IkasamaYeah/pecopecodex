@@ -10,7 +10,7 @@ import Bassai from "../images/WorkIcon/bassai.png"
 import Seiyaku from "../images/WorkIcon/seiyaku.png"
 import Unpan from "../images/WorkIcon/unpan.png"
 import Mizuyari from "../images/WorkIcon/mizuyari.png"
-import Hatsuden from "../images/WorkIcon/hatuden.png"
+import Hatsuden from "../images/WorkIcon/hatsuden.png"
 import Saisyuu from "../images/WorkIcon/saisyuu.png"
 import Saikutsu from "../images/WorkIcon/saikutsu.png"
 import Reikyaku from "../images/WorkIcon/reikyaku.png"
@@ -28,25 +28,38 @@ import Dragon from "../images/TypeIcon/Dragon.png"
 const DictionaryContainer = styled.div`
   margin-top: 1vw;
 `
-const TableContainer = styled.div `
+const TableContainer = styled.div`
   display: flex;
   margin-top: 1vw;
   justify-content: center;
 `
 const FilteringContainer = styled.div`
-  margin-top: 1vw;
-  display: block;
+  margin:auto;
+  width: 50%;
 `
 
 const WorkFilteringContainer = styled.div`
+  margin-top: 1vw;
+  display: flex;
+  justify-content: space-between;
+  overflow-wrap: break-word;
+`
+
+const WorkFilterIcon = styled.img`
+  word-wrap: break-word;
+  height: 30px;
+  object-fit: contain;
 `
 
 const TypeFilterContainer = styled.div`
-  img{
-    display:inline-block;
-    width: 35px;
-    height: 35px;
-  }
+  margin-top: 1vw;
+  display: flex;
+  justify-content: space-between;
+`
+
+const TypeFilterIcon = styled.img`
+  height: 40px;
+  object-fit: contain;
 `
 
 const StyledTable = styled.table`
@@ -75,18 +88,110 @@ const TableData = styled.td`
   border-color: #cccccc;
 `
 
+const IconImage = styled.img`
+  height: 50px;
+  object-fit: contain;
+`
+
+const WorkImage = styled.img`
+`
+
+const TypeImage = styled.img`
+  height: 40px;
+  object-fit: contain;
+`
+
+const WorkLevelContainer = styled.div`
+  margin-top: 1vw;
+  display: flex;
+  justify-content: space-between;
+`
+
 export function Dictionary() {
   const [typeFilter, setTypeFilter] = useState("All")
   const [workFilter, setWorkFilter] = useState("All")
+  const [hiokoshiLevelFilter, setHiokoshiLevelFilter] = useState("0")
+  const [tanemakiLevelFilter, setTanemakiLevelFilter] = useState("0")
+  const [tesagyouLevelFilter, setTesagyouLevelFilter] = useState("0")
+  const [bassaiLevelFilter, setBassaiLevelFilter] = useState("0")
+  const [seiyakuLevelFilter, setSeiyakuLevelFilter] = useState("0")
+  const [unpanLevelFilter, setUnpanLevelFilter] = useState("0")
+  const [mizuyariLevelFilter, setMizuyariLevelFilter] = useState("0")
+  const [hatsudenLevelFilter, setHatsudenLevelFilter] = useState("0")
+  const [saisyuuLevelFilter, setSaisyuuLevelFilter] = useState("0")
+  const [saikutsuLevelFilter, setSaikutsuLevelFilter] = useState("0")
+  const [reikyakuLevelFilter, setReikyakuLevelFilter] = useState("0")
+  const [houbokuLevelFilter, setHoubokuLevelFilter] = useState("0")
+
 
   const handleTypeFilterClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     const value = (event.currentTarget as HTMLButtonElement).value;
     setTypeFilter(value);
   }
-  
+
   const handleWorkFilterClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     const value = (event.currentTarget as HTMLButtonElement).value;
     setWorkFilter(value);
+  }
+
+  const handleHiokoshiLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setHiokoshiLevelFilter(value)
+  }
+
+  const handleTanemakiLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setTanemakiLevelFilter(value)
+  }
+
+  const handleTesagyouLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setTesagyouLevelFilter(value)
+  }
+
+  const handleBassaiLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setBassaiLevelFilter(value)
+  }
+
+  const handleSeiyakuLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setSeiyakuLevelFilter(value)
+  }
+
+  const handleUnpanLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setUnpanLevelFilter(value)
+  }
+
+  const handleMizuyariLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setMizuyariLevelFilter(value)
+  }
+
+  const handleHatsudenLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setHatsudenLevelFilter(value)
+  }
+
+  const handleSaisyuuLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setSaisyuuLevelFilter(value)
+  }
+
+  const handleSaikutsuLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setSaikutsuLevelFilter(value)
+  }
+
+  const handleReikyakuLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setReikyakuLevelFilter(value)
+  }
+
+  const handleHoubokuLevelFilterClick: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const value = (event.currentTarget.value);
+    setHoubokuLevelFilter(value)
   }
 
   const filteredData = PalData.filter((datum) => {
@@ -96,7 +201,80 @@ export function Dictionary() {
       workFilter === "All" ||
       (datum.work.length > 0 && datum.work.some((work) => work.kind.includes(workFilter)));
 
-    return hasTypeMatch && hasWorkMatch;
+    const hasHiokoshiLevelMatch =
+      hiokoshiLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Hiokoshi) &&
+        (hiokoshiLevelFilter ? work.level >= parseInt(hiokoshiLevelFilter) : true)
+      ))
+
+    const hasTanemakiLevelMatch =
+      tanemakiLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Tanemaki) &&
+        (tanemakiLevelFilter ? work.level >= parseInt(tanemakiLevelFilter) : true)
+      ))
+
+    const hasTesagyouLevelMatch =
+      tesagyouLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Tesagyou) &&
+        (tesagyouLevelFilter ? work.level >= parseInt(tesagyouLevelFilter) : true)
+      ))
+
+    const hasBassaiLevelMatch =
+      bassaiLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Bassai) &&
+        (bassaiLevelFilter ? work.level >= parseInt(bassaiLevelFilter) : true)
+      ))
+
+    const hasSeiyakuLevelMatch =
+      seiyakuLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Seiyaku) &&
+        (seiyakuLevelFilter ? work.level >= parseInt(seiyakuLevelFilter) : true)
+      ))
+
+    const hasUnpanLevelMatch =
+      unpanLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Unpan) &&
+        (unpanLevelFilter ? work.level >= parseInt(unpanLevelFilter) : true)
+      ))
+
+    const hasMizuyariLevelMatch =
+      mizuyariLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Mizuyari) &&
+        (mizuyariLevelFilter ? work.level >= parseInt(mizuyariLevelFilter) : true)
+      ))
+
+    const hasHatsudenLevelMatch =
+      hatsudenLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Hatsuden) &&
+        (hatsudenLevelFilter ? work.level >= parseInt(hatsudenLevelFilter) : true)
+      ))
+
+    const hasSaisyuuLevelMatch =
+      saisyuuLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Saisyuu) &&
+        (saisyuuLevelFilter ? work.level >= parseInt(saisyuuLevelFilter) : true)
+      ))
+
+    const hasSaikutsuLevelMatch =
+      saikutsuLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Saikutsu) &&
+        (saikutsuLevelFilter ? work.level >= parseInt(saikutsuLevelFilter) : true)
+      ))
+
+    const hasReikyakuLevelMatch =
+      reikyakuLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Reikyaku) &&
+        (reikyakuLevelFilter ? work.level >= parseInt(reikyakuLevelFilter) : true)
+      ))
+
+    const hasHoubokuLevelMatch =
+      houbokuLevelFilter === "0" ||
+      (datum.work.some((work) => work.kind.includes(Houboku) &&
+        (houbokuLevelFilter ? work.level >= parseInt(houbokuLevelFilter) : true)
+      ))
+
+    return hasTypeMatch && hasWorkMatch && hasHiokoshiLevelMatch && hasTanemakiLevelMatch && hasTesagyouLevelMatch && hasBassaiLevelMatch && hasSeiyakuLevelMatch && hasUnpanLevelMatch && hasMizuyariLevelMatch && hasHatsudenLevelMatch
+      && hasSaisyuuLevelMatch && hasSaikutsuLevelMatch && hasReikyakuLevelMatch && hasHoubokuLevelMatch;
   });
 
   return (<>
@@ -105,31 +283,117 @@ export function Dictionary() {
       <FilteringContainer>
         <WorkFilteringContainer>
           <Button onClick={handleWorkFilterClick} value="All">全</Button>
-          <Button onClick={handleWorkFilterClick} value="火起こし"><img src={Hiokoshi} alt="火起こし" /></Button>
-          <Button onClick={handleWorkFilterClick} value="種まき"><img src={Tanemaki} alt="種まき" /></Button>
-          <Button onClick={handleWorkFilterClick} value="手作業"><img src={Tesagyou} alt="手作業" /></Button>
-          <Button onClick={handleWorkFilterClick} value="伐採"><img src={Bassai} alt="伐採" /></Button>
-          <Button onClick={handleWorkFilterClick} value="製薬"><img src={Seiyaku} alt="製薬" /></Button>
-          <Button onClick={handleWorkFilterClick} value="運搬"><img src={Unpan} alt="運搬" /></Button>
-          <Button onClick={handleWorkFilterClick} value="水やり"><img src={Mizuyari} alt="水やり" /></Button>
-          <Button onClick={handleWorkFilterClick} value="発電"><img src={Hatsuden} alt="発電" /></Button>
-          <Button onClick={handleWorkFilterClick} value="採集"><img src={Saisyuu} alt="発電" /></Button>
-          <Button onClick={handleWorkFilterClick} value="採掘"><img src={Saikutsu} alt="採掘" /></Button>
-          <Button onClick={handleWorkFilterClick} value="冷却"><img src={Reikyaku} alt="冷却" /></Button>
-          <Button onClick={handleWorkFilterClick} value="放牧"><img src={Houboku} alt="放牧" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Hiokoshi}><WorkFilterIcon src={Hiokoshi} alt="火起こし" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Tanemaki}><WorkFilterIcon src={Tanemaki} alt="種まき" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Tesagyou}><WorkFilterIcon src={Tesagyou} alt="手作業" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Bassai}><WorkFilterIcon src={Bassai} alt="伐採" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Seiyaku}><WorkFilterIcon src={Seiyaku} alt="製薬" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Unpan}><WorkFilterIcon src={Unpan} alt="運搬" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Mizuyari}><WorkFilterIcon src={Mizuyari} alt="水やり" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Hatsuden}><WorkFilterIcon src={Hatsuden} alt="発電" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Saisyuu}><WorkFilterIcon src={Saisyuu} alt="採集" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Saikutsu}><WorkFilterIcon src={Saikutsu} alt="採掘" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Reikyaku}><WorkFilterIcon src={Reikyaku} alt="冷却" /></Button>
+          <Button onClick={handleWorkFilterClick} value={Houboku}><WorkFilterIcon src={Houboku} alt="放牧" /></Button>
         </WorkFilteringContainer>
         <TypeFilterContainer>
           <Button onClick={handleTypeFilterClick} value="All">全</Button>
-          <Button onClick={handleTypeFilterClick} value="無"><img src={Neutral} alt="無" /></Button>
-          <Button onClick={handleTypeFilterClick} value="炎"><img src={Fire} alt="炎" /></Button>
-          <Button onClick={handleTypeFilterClick} value="水"><img src={Water} alt="水" /></Button>
-          <Button onClick={handleTypeFilterClick} value="氷"><img src={Ice} alt="氷" /></Button>
-          <Button onClick={handleTypeFilterClick} value="雷"><img src={Thunder} alt="雷" /></Button>
-          <Button onClick={handleTypeFilterClick} value="草"><img src={Grass} alt="草" /></Button>
-          <Button onClick={handleTypeFilterClick} value="地"><img src={Earth} alt="地" /></Button>
-          <Button onClick={handleTypeFilterClick} value="闇"><img src={Dark} alt="闇" /></Button>
-          <Button onClick={handleTypeFilterClick} value="竜"><img src={Dragon} alt="竜" /></Button>
+          <Button onClick={handleTypeFilterClick} value={Neutral}><TypeFilterIcon src={Neutral} alt="無" /></Button>
+          <Button onClick={handleTypeFilterClick} value={Fire}><TypeFilterIcon src={Fire} alt="炎" /></Button>
+          <Button onClick={handleTypeFilterClick} value={Water}><TypeFilterIcon src={Water} alt="水" /></Button>
+          <Button onClick={handleTypeFilterClick} value={Ice}><TypeFilterIcon src={Ice} alt="氷" /></Button>
+          <Button onClick={handleTypeFilterClick} value={Thunder}><TypeFilterIcon src={Thunder} alt="雷" /></Button>
+          <Button onClick={handleTypeFilterClick} value={Grass}><TypeFilterIcon src={Grass} alt="草" /></Button>
+          <Button onClick={handleTypeFilterClick} value={Earth}><TypeFilterIcon src={Earth} alt="地" /></Button>
+          <Button onClick={handleTypeFilterClick} value={Dark}><TypeFilterIcon src={Dark} alt="闇" /></Button>
+          <Button onClick={handleTypeFilterClick} value={Dragon}><TypeFilterIcon src={Dragon} alt="竜" /></Button>
         </TypeFilterContainer>
+        <WorkLevelContainer>
+          <select name="hiokoshi" id="hiokoshi-select" onChange={handleHiokoshiLevelFilterClick}>
+            <option value="0">火起し</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="tanemaki" id="tanemaki-select" onChange={handleTanemakiLevelFilterClick}>
+            <option value="0">種まき</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="tesagyou" id="tesagyou-select" onChange={handleTesagyouLevelFilterClick}>
+            <option value="0">手作業</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="bassai" id="bassai-select" onChange={handleBassaiLevelFilterClick}>
+            <option value="0">伐採</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="seiyaku" id="seiyaku-select" onChange={handleSeiyakuLevelFilterClick}>
+            <option value="0">製薬</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="unpan" id="unpan-select" onChange={handleUnpanLevelFilterClick}>
+            <option value="0">運搬</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="mizuyari" id="mizuyari-select" onChange={handleMizuyariLevelFilterClick}>
+            <option value="0">水やり</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="hatsuden" id="hatsuden-select" onChange={handleHatsudenLevelFilterClick}>
+            <option value="0">発電</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="saisyuu" id="saisyuu-select" onChange={handleSaisyuuLevelFilterClick}>
+            <option value="0">採集</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="saikutsu" id="saikutsu-select" onChange={handleSaikutsuLevelFilterClick}>
+            <option value="0">採掘</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="reikyaku" id="reikyaku-select" onChange={handleReikyakuLevelFilterClick}>
+            <option value="0">冷却</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <select name="houboku" id="houboku-select" onChange={handleHoubokuLevelFilterClick}>
+            <option value="0">放牧</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </WorkLevelContainer>
       </FilteringContainer>
       <TableContainer>
         <StyledTable>
@@ -137,14 +401,17 @@ export function Dictionary() {
             {filteredData.map(datum =>
               <TableRay key={datum.id}>
                 <TableData>{datum.id}</TableData>
-                <TableData>{datum.name}</TableData>
-                <TableData>{datum.type.join("/")}</TableData>
-                <TableData>{datum.work.map((work,index) => (
-                  <div key={index}>{work.kind}
+                <TableData ><IconImage src={datum.icon} alt={datum.name} /><p>{datum.name}</p></TableData>
+                <TableData>{datum.type.map((type, index) => (
+                  <TypeImage src={type} />
+                ))}</TableData>
+                <TableData>{datum.work.map((work, index) => (
+                  <div key={index}>
+                    <WorkImage src={work.kind} alt="作業" />
                     {work.level}
                   </div>
                 ))}</TableData>
-                <TableData>{datum.item.map((item,index) => (
+                <TableData>{datum.item.map((item, index) => (
                   <div key={index}>{item}</div>
                 ))}
                 </TableData>
