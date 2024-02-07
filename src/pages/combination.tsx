@@ -40,8 +40,8 @@ export function Combination() {
       .map((filteredPal, index) =>                                                        // フィルタリングされた配列を .map で単一のオブジェクトとして再配置
         <div key={index}>
           {filteredPal.parent.filter(filteredParent => filteredParent.includes(pedigree)) // filteredPal の parent プロパティに pedigree が含まれるオブジェクトのみをフィルタリング
-            .map(([b]) => {                                                            // filterdParent の配列内の要素を a,b として再配置
-              const parentA = PalData.find(parent => parent.name === pedigree)
+            .map(([a,b]) => {                                                               // filterdParent の配列内の要素を a,b として再配置
+              const parentA = PalData.find(parent => parent.name === a)
               const parentB = PalData.find(parent => parent.name === b)
               return (
                 <ResultCombinationWrapper key={index}>
