@@ -2,6 +2,7 @@ import { Routes,Route } from "react-router-dom"
 import { Combination } from "./pages/combination";
 import { Dictionary } from "./pages/Dictionary";
 import { Home } from "./pages/home";
+import {Inheritetion} from "./pages/inheritetion";
 import 'destyle.css';
 import './App.css';
 
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="combination" element={<Combination />}></Route>
         <Route path="dictionary" element={<Dictionary />}></Route>
+        <Route path="inheritation" element={<Inheritetion />}></Route>
       </Routes>
     </div>
     </>);
