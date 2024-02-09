@@ -7,6 +7,7 @@ export function Home () {
     <div>
       <Link to={`/dictionary`}><Button>図鑑</Button></Link>
       <Link to={`/combination`}><Button>配合</Button></Link>
+      <Link to={`/inheritation`}><Button>継承</Button></Link>
     </div>
   </>)
 }
