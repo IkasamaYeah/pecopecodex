@@ -157,7 +157,7 @@ import Earth from "../images/TypeIcon/Earth.png"
 import Dark from "../images/TypeIcon/Dark.png"
 import Dragon from "../images/TypeIcon/Dragon.png"
 
-type PalDataItem = {
+export type PalDataItem = {
   name:string;
   icon: string;
   id:string;
