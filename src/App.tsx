@@ -3,6 +3,7 @@ import { Combination } from "./pages/combination";
 import { Dictionary } from "./pages/Dictionary";
 import { Home } from "./pages/home";
 import {Inheritetion} from "./pages/inheritetion";
+import { InheritationTest } from "./pages/InheritationTest";
 import 'destyle.css';
 import './App.css';
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="combination" element={<Combination />}></Route>
         <Route path="dictionary" element={<Dictionary />}></Route>
         <Route path="inheritation" element={<Inheritetion />}></Route>
+        <Route path="inheritationtest" element={<InheritationTest />}></Route>
       </Routes>
     </div>
     </>);
