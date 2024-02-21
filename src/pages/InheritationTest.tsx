@@ -1,21 +1,56 @@
 import { useState, useEffect } from "react"
 import { PalData, PalDataItem } from "../components/paldata"
 import styled from "@emotion/styled"
+import Kakeru from "../images/x.png"
+import ikoru from "../images/=.png"
 
 const Wrapper = styled.div`
+  padding-top: 1vw;
+`
 
+const InheritedChildWrapper = styled.div`
+  margin-top: 1vw;
+`
+
+const InheritedChildSelector = styled.select`
+`
+
+const ParentSelectorWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 1vw;
 `
 
 const ParentASelector = styled.select`
-
+  
 `
 
 const ParentBSelector = styled.select`
 
 `
 
-const InheritedChildSelector = styled.select`
+const ResultWrapper = styled.div`
+  margin-top: 1vw;
+`
 
+const PalIcon = styled.img`
+  height:5vw;
+  object-fit: contain;
+`
+
+const OperatorIcon = styled.img`
+  height: 2vw;
+`
+
+const InheritationWrapper = styled.div`
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  margin-left: 30vw;
+  margin-right: 30vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  place-items: center;
+  border: 1px;
 `
 
 export const InheritationTest: React.FC = () => {
@@ -86,16 +121,18 @@ export const InheritationTest: React.FC = () => {
 
   return (<>
     <Wrapper>
-      <div>
-        <p>継承先</p>
+      <h1>継承配合</h1>
+      <InheritedChildWrapper>
+        <p>作りたいパル</p>
         <InheritedChildSelector onChange={handleInheritedChildName}>
           <option>―――――</option>
           {PalData.map(inheritedPal =>
             <option value={inheritedPal.name}>{inheritedPal.name}</option>
           )}
         </InheritedChildSelector>
-      </div>
-      <div>
+      </InheritedChildWrapper>
+
+      <ParentSelectorWrapper>
         <p>継承元1</p>
         <ParentASelector onChange={handleSourceParentAName}>
           <option value="">―――――</option>
@@ -103,8 +140,6 @@ export const InheritationTest: React.FC = () => {
             <option key={parentA.name}>{parentA.name}</option>
           )}
         </ParentASelector>
-      </div>
-      <div>
         <p>継承元2</p>
         <ParentBSelector onChange={handleSourceParentBName}>
           <option value="">―――――</option>
@@ -112,69 +147,73 @@ export const InheritationTest: React.FC = () => {
             <option value={parentB.name}>{parentB.name}</option>
           )}
         </ParentBSelector>
-      </div>
+      </ParentSelectorWrapper>
 
-      <div>
-        {filteredFirstChild && filteredFirstChild.name === inheritedChildName &&
-          <div>
-            <p>
-              <img src={sourceParentA?.icon} alt={sourceParentA?.name} />
-              +
-              <img src={sourceParentB?.icon} alt={sourceParentB?.name} />
-              =
-              <img src={inheritedChild?.icon} alt={inheritedChild?.name} />
-            </p>
-          </div>
+      <ResultWrapper>
+        {filteredFirstChild?.name === inheritedChildName &&
+          <InheritationWrapper>
+              <PalIcon src={sourceParentA?.icon} alt={sourceParentA?.name} />
+              <OperatorIcon src={Kakeru} alt="x" />
+              <PalIcon src={sourceParentB?.icon} alt={sourceParentB?.name} />
+              <OperatorIcon src={ikoru} alt="="/>
+              <PalIcon src={inheritedChild?.icon} alt={inheritedChild?.name} />
+          </InheritationWrapper>
         }
         {filteredFirstChild?.name !== inheritedChildName && secondGenerationCheck &&
           <div>
-            <p>
-              <img src={sourceParentA?.icon} alt={sourceParentA?.name} />
-              +
-              <img src={sourceParentB?.icon} alt={sourceParentB?.name} />
-              =
-              <img src={filteredFirstChild?.icon} alt={filteredFirstChild?.name} />
-            </p>
+            <p>配合1回目</p>
+            <InheritationWrapper>
+              <PalIcon src={sourceParentA?.icon} alt={sourceParentA?.name} />
+              <OperatorIcon src={Kakeru} alt="x" />
+              <PalIcon src={sourceParentB?.icon} alt={sourceParentB?.name} />
+              <OperatorIcon src={ikoru} alt="=" />
+              <PalIcon src={filteredFirstChild?.icon} alt={filteredFirstChild?.name} />
+            </InheritationWrapper>
+            <p>配合2回目</p>
             {secondGenerationCheck?.parent.map(([a, b]) =>
-              <div>
-                <p><img src={a?.icon} alt={a?.name} />+<img src={b?.icon} alt={b?.name} />=<img src={inheritedChild?.icon} alt={inheritedChild?.name} /></p>
-              </div>
+              <InheritationWrapper>
+                <PalIcon src={a?.icon} alt={a?.name} />
+                <OperatorIcon src={Kakeru} alt="x" />
+                <PalIcon src={b?.icon} alt={b?.name} />
+                <OperatorIcon src={ikoru} alt="=" />
+                <PalIcon src={inheritedChild?.icon} alt={inheritedChild?.name} />
+              </InheritationWrapper>
             )}
           </div>
         }
-        {filteredFirstChild?.name !== inheritedChildName && secondGenerationCheck === undefined && filteredThirdChildren?.parent?.map(parent => parent?.map(pal =>
+        {filteredFirstChild?.name !== inheritedChildName &&  filteredThirdChildren  &&
           <div>
-            <p>第一継承</p>
-            <p>
-              <img src={sourceParentA?.icon} alt={sourceParentA?.name} />
-              +
-              <img src={sourceParentB?.icon} alt={sourceParentB?.name} />
-              =
-              <img src={filteredFirstChild?.icon} alt={filteredFirstChild?.name} />
-            </p>
-            <p>第二継承</p>
+            <p>配合1回目</p>
+            <InheritationWrapper>
+              <PalIcon src={sourceParentA?.icon} alt={sourceParentA?.name} />
+              <OperatorIcon src={Kakeru} alt="x" />
+              <PalIcon src={sourceParentB?.icon} alt={sourceParentB?.name} />
+              <OperatorIcon src={ikoru} alt="=" />
+              <PalIcon src={filteredFirstChild?.icon} alt={filteredFirstChild?.name} />
+            </InheritationWrapper>
+            <p>配合2回目</p>
             {filteredThirdGeneration.map(pal => pal.parent.map(p =>
-              <p>
-                <img src={secondChild?.icon} alt={secondChild?.name} />
-                +
-                <img src={p?.icon} alt={p?.name} />
-                =
-                <img src={pal?.icon} alt={pal?.name} />
-              </p>
+              <InheritationWrapper>
+                <PalIcon src={secondChild?.icon} alt={secondChild?.name} />
+                <OperatorIcon src={Kakeru} alt="x" />
+                <PalIcon src={p?.icon} alt={p?.name} />
+                <OperatorIcon src={ikoru} alt="=" />
+                <PalIcon src={pal?.icon} alt={pal?.name} />
+              </InheritationWrapper>
             ))}
-            <p>第三継承</p>
+            <p>配合3回目</p>             
             {filteredThirdChildren?.parent?.map(([a, b]) =>
-              <p>
-                <img src={a?.icon} alt={a?.name} />
-                +
-                <img src={b?.icon} alt={b?.name} />
-                =
-                <img src={inheritedChild?.icon} alt={inheritedChild?.name} />
-              </p>
-            )}
+              <InheritationWrapper> 
+                  <PalIcon src={a?.icon} alt={a?.name} />
+                  <OperatorIcon src={Kakeru} alt="x" />
+                  <PalIcon src={b?.icon} alt={b?.name} />
+                  <OperatorIcon src={ikoru} alt="=" />
+                  <PalIcon src={inheritedChild?.icon} alt={inheritedChild?.name} />
+              </InheritationWrapper>
+              )}
           </div>
-        ))}
-      </div>
+        }
+      </ResultWrapper>
     </Wrapper>
   </>)
 }
