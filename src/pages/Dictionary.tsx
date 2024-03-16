@@ -26,7 +26,8 @@ import Dark from "../images/TypeIcon/Dark.png"
 import Dragon from "../images/TypeIcon/Dragon.png"
 
 const DictionaryContainer = styled.div`
-  margin-top: 1vw;
+  
+  margin-top: 60px;
 `
 const TableContainer = styled.div`
   display: flex;

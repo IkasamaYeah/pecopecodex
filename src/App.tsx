@@ -6,9 +6,11 @@ import {Inheritetion} from "./pages/inheritetion";
 import { InheritationTest } from "./pages/InheritationTest";
 import 'destyle.css';
 import './App.css';
+import { Header } from "./components/Header";
 
 function App() {
   return (<>
+    <Header/>
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />}></Route>

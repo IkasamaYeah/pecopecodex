@@ -5,6 +5,7 @@ import Kakeru from "../images/x.png"
 import ikoru from "../images/=.png"
 
 const Wrapper = styled.div`
+  margin-top: 60px;
   padding-top: 1vw;
 `
 
